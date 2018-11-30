@@ -5,6 +5,7 @@
 //  Created by 김현태 on 25/11/2018.
 //  Copyright © 2018 onemoon. All rights reserved.
 //
+// 계산기 부분
 
 import UIKit
 
@@ -30,7 +31,7 @@ class SecondViewController: UIViewController {
         multiplyZeroAlert = makeAlert(mainTitle: "Are You Sure?", mainMessage: "you try multiply number by zero", "OK" ,"My Mistake")
         
         // 현재는 [UIButton] 에 액션을 일일이 연결
-        // button 자체에 액션을 주거나 , button에 클래스를 만들어서 액션을 담는 방식을 구상해보자
+        // TODO: button 자체에 액션을 주거나 , button에 클래스를 만들어서 액션을 담는 방식을 구상해보자
 //        for (index, button) in numberPadNumberButton.enumerated() {
 //            button.addTarget(self, action: #selector(numberPadButtonTab(_:)), for: .touchUpInside)
 //            button.tag = index + 1
@@ -41,6 +42,7 @@ class SecondViewController: UIViewController {
 //        print(sender.tag)
 //    }
 
+    // 숫자 버튼을 눌렀을 때
     @IBAction func touchUpPadButton(_ sender: UIButton) {
         guard let nowTargetLabel: String = targetNumberLabel.text , targetNumberLabel.text!.count <= 10 else { return }
         guard let padNumber: String = sender.titleLabel?.text else { return }
@@ -52,6 +54,7 @@ class SecondViewController: UIViewController {
         }
     }
     
+    // 연산자 버튼을 눌렀을 때
     @IBAction func touchUpOperatorButton(_ sender: UIButton) {
         var result: String = ""
         guard let baseNumber: String = baseNumberLabel.text else { return }
@@ -73,6 +76,7 @@ class SecondViewController: UIViewController {
         targetNumberLabel.text = "0"
     }
     
+    // 계산로직은 따로
     func calclateTwoStr(operator op: OperatorEnum ,base baseNumberStr: String, source sourceNumberStr: String) -> String {
         // 나누기가 계속 될경우 base 가 A.xxx의 String이 되는데 Int로 이 값을 바꾸려고 하는경우 아래 guard baseNumber에서 걸림
         // 그래서 여기서 해당경우의 로직을 만듦
@@ -106,7 +110,7 @@ class SecondViewController: UIViewController {
                 result = String(Float(baseNumber) / Float(sourceNumber))
             
             case .multiply:
-                // 0 를 곱했을때 뭔가 액션을 넣으려고 했으나 실패함... 질문하기
+                // TODO: 0 를 곱했을때 뭔가 액션을 넣으려고 했으나 실패함... 질문하기
 //                if sourceNumber == 0 {
 //                    present(multiplyZeroAlert, animated: true, completion: {
 //                        // 띄워지는게 끝났을 때 실행된다. -> 다음으로 넘어가는게 아니다...
@@ -131,7 +135,7 @@ class SecondViewController: UIViewController {
         return result
     }
     
-    // one button alert view
+    // alert button 만드는 함수
     func makeAlert(mainTitle tit: String , mainMessage mainMsg: String , _ buttonMessage: String...) -> UIAlertController {
         let resultAlert = UIAlertController(title: tit, message: mainMsg, preferredStyle: .alert)
         // preferredStyle -> .actionSheet: 아래에서 올라오는 alert
@@ -144,7 +148,6 @@ class SecondViewController: UIViewController {
             resultAlert.addAction(okAction)
             resultAlert.addAction(cancelAction)
         }
-        
         return resultAlert
     }
 }

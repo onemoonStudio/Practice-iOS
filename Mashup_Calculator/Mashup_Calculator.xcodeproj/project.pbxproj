@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D988B02921A9C88500178C03 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988B02821A9C88500178C03 /* SecondViewController.swift */; };
-		D9AE696F21A914940080A6D4 /* CalculatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AE696E21A914940080A6D4 /* CalculatorVC.swift */; };
+		D988B06F21AD5FCD00178C03 /* sharedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988B06E21AD5FCD00178C03 /* sharedValue.swift */; };
+		D988B07121AD644300178C03 /* OperatorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988B07021AD644300178C03 /* OperatorEnum.swift */; };
 		D9F0893B21A7C44C0023ABAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0893A21A7C44C0023ABAE /* AppDelegate.swift */; };
 		D9F0893D21A7C44C0023ABAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0893C21A7C44C0023ABAE /* ViewController.swift */; };
 		D9F0894021A7C44C0023ABAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9F0893E21A7C44C0023ABAE /* Main.storyboard */; };
@@ -18,7 +19,8 @@
 
 /* Begin PBXFileReference section */
 		D988B02821A9C88500178C03 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		D9AE696E21A914940080A6D4 /* CalculatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVC.swift; sourceTree = "<group>"; };
+		D988B06E21AD5FCD00178C03 /* sharedValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharedValue.swift; sourceTree = "<group>"; };
+		D988B07021AD644300178C03 /* OperatorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorEnum.swift; sourceTree = "<group>"; };
 		D9F0893721A7C44C0023ABAE /* Mashup_Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mashup_Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9F0893A21A7C44C0023ABAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9F0893C21A7C44C0023ABAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,8 @@
 		D9F0893921A7C44C0023ABAE /* Mashup_Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				D988B06E21AD5FCD00178C03 /* sharedValue.swift */,
+				D988B07021AD644300178C03 /* OperatorEnum.swift */,
 				D9F0893A21A7C44C0023ABAE /* AppDelegate.swift */,
 				D9F0893C21A7C44C0023ABAE /* ViewController.swift */,
 				D988B02821A9C88500178C03 /* SecondViewController.swift */,
@@ -65,7 +69,6 @@
 				D9F0894121A7C44D0023ABAE /* Assets.xcassets */,
 				D9F0894321A7C44D0023ABAE /* LaunchScreen.storyboard */,
 				D9F0894621A7C44D0023ABAE /* Info.plist */,
-				D9AE696E21A914940080A6D4 /* CalculatorVC.swift */,
 			);
 			path = Mashup_Calculator;
 			sourceTree = "<group>";
@@ -142,9 +145,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D988B02921A9C88500178C03 /* SecondViewController.swift in Sources */,
+				D988B06F21AD5FCD00178C03 /* sharedValue.swift in Sources */,
 				D9F0893D21A7C44C0023ABAE /* ViewController.swift in Sources */,
 				D9F0893B21A7C44C0023ABAE /* AppDelegate.swift in Sources */,
-				D9AE696F21A914940080A6D4 /* CalculatorVC.swift in Sources */,
+				D988B07121AD644300178C03 /* OperatorEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

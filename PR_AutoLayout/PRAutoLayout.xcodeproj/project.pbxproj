@@ -12,6 +12,8 @@
 		D95C876121A567890015D634 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D95C875F21A567890015D634 /* Main.storyboard */; };
 		D95C876321A5678C0015D634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95C876221A5678C0015D634 /* Assets.xcassets */; };
 		D95C876621A5678C0015D634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D95C876421A5678C0015D634 /* LaunchScreen.storyboard */; };
+		D9A26F4A21E58AF20016ED6C /* LayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A26F4921E58AF20016ED6C /* LayoutViewController.swift */; };
+		D9AF0F3D21BFBD3B0021878E /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AF0F3C21BFBD3B0021878E /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		D95C876221A5678C0015D634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D95C876521A5678C0015D634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D95C876721A5678C0015D634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9A26F4921E58AF20016ED6C /* LayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewController.swift; sourceTree = "<group>"; };
+		D9AF0F3C21BFBD3B0021878E /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				D95C876221A5678C0015D634 /* Assets.xcassets */,
 				D95C876421A5678C0015D634 /* LaunchScreen.storyboard */,
 				D95C876721A5678C0015D634 /* Info.plist */,
+				D9AF0F3C21BFBD3B0021878E /* ThirdViewController.swift */,
+				D9A26F4921E58AF20016ED6C /* LayoutViewController.swift */,
 			);
 			path = PRAutoLayout;
 			sourceTree = "<group>";
@@ -136,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D95C875E21A567890015D634 /* ViewController.swift in Sources */,
+				D9AF0F3D21BFBD3B0021878E /* ThirdViewController.swift in Sources */,
+				D9A26F4A21E58AF20016ED6C /* LayoutViewController.swift in Sources */,
 				D95C875C21A567890015D634 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

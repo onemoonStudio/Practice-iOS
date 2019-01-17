@@ -34,7 +34,6 @@ class SlideInPresentationController: UIPresentationController {
     return frame
   }
 
-  
   //2
   init(presentedViewController: UIViewController,
        presenting presentingViewController: UIViewController?,
@@ -50,6 +49,7 @@ class SlideInPresentationController: UIPresentationController {
   }
   
   override func presentationTransitionWillBegin() {
+    print("presentationTransitionWillBegin")
     
     // 1
     containerView?.insertSubview(dimmingView, at: 0)
@@ -75,6 +75,7 @@ class SlideInPresentationController: UIPresentationController {
   
 
   override func dismissalTransitionWillBegin() {
+    print("dismissalTransitionWillBegin")
     guard let coordinator = presentedViewController.transitionCoordinator else {
       dimmingView.alpha = 0.0
       return
@@ -106,6 +107,7 @@ class SlideInPresentationController: UIPresentationController {
 
 // MARK: - Private
 private extension SlideInPresentationController {
+  
   func setupDimmingView() {
     dimmingView = UIView()
     dimmingView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +116,6 @@ private extension SlideInPresentationController {
     
     let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
     dimmingView.addGestureRecognizer(recognizer)
-
     
   }
   dynamic func handleTap(recognizer: UITapGestureRecognizer) {

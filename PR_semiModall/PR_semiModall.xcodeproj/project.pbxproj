@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D94ADFCE21F437AB000105C2 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94ADFCD21F437AB000105C2 /* PresentationManager.swift */; };
+		D94ADFD021F439BE000105C2 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94ADFCF21F439BE000105C2 /* PresentationController.swift */; };
+		D94ADFD221F43ABC000105C2 /* PresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94ADFD121F43ABC000105C2 /* PresentationAnimator.swift */; };
+		D94ADFD421F43BCE000105C2 /* Modal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D94ADFD321F43BCE000105C2 /* Modal.storyboard */; };
 		D990ABE121EC572500D1CC7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D990ABE021EC572500D1CC7E /* AppDelegate.swift */; };
 		D990ABE321EC572500D1CC7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D990ABE221EC572500D1CC7E /* ViewController.swift */; };
 		D990ABE621EC572500D1CC7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D990ABE421EC572500D1CC7E /* Main.storyboard */; };
 		D990ABE921EC572500D1CC7E /* PR_semiModall.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D990ABE721EC572500D1CC7E /* PR_semiModall.xcdatamodeld */; };
 		D990ABEB21EC572700D1CC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D990ABEA21EC572700D1CC7E /* Assets.xcassets */; };
 		D990ABEE21EC572700D1CC7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D990ABEC21EC572700D1CC7E /* LaunchScreen.storyboard */; };
-		D990ABF621EC596D00D1CC7E /* SemiModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D990ABF521EC596D00D1CC7E /* SemiModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D94ADFCD21F437AB000105C2 /* PresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
+		D94ADFCF21F439BE000105C2 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		D94ADFD121F43ABC000105C2 /* PresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAnimator.swift; sourceTree = "<group>"; };
+		D94ADFD321F43BCE000105C2 /* Modal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Modal.storyboard; sourceTree = "<group>"; };
 		D990ABDD21EC572500D1CC7E /* PR_semiModall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PR_semiModall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D990ABE021EC572500D1CC7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D990ABE221EC572500D1CC7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +32,6 @@
 		D990ABEA21EC572700D1CC7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D990ABED21EC572700D1CC7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D990ABEF21EC572700D1CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D990ABF521EC596D00D1CC7E /* SemiModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemiModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +45,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D94ADFCC21F435F8000105C2 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D94ADFCD21F437AB000105C2 /* PresentationManager.swift */,
+				D94ADFCF21F439BE000105C2 /* PresentationController.swift */,
+				D94ADFD121F43ABC000105C2 /* PresentationAnimator.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		D990ABD421EC572500D1CC7E = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +74,15 @@
 		D990ABDF21EC572500D1CC7E /* PR_semiModall */ = {
 			isa = PBXGroup;
 			children = (
+				D94ADFCC21F435F8000105C2 /* Presentation */,
 				D990ABE021EC572500D1CC7E /* AppDelegate.swift */,
 				D990ABE221EC572500D1CC7E /* ViewController.swift */,
 				D990ABE421EC572500D1CC7E /* Main.storyboard */,
+				D94ADFD321F43BCE000105C2 /* Modal.storyboard */,
 				D990ABEA21EC572700D1CC7E /* Assets.xcassets */,
 				D990ABEC21EC572700D1CC7E /* LaunchScreen.storyboard */,
 				D990ABEF21EC572700D1CC7E /* Info.plist */,
 				D990ABE721EC572500D1CC7E /* PR_semiModall.xcdatamodeld */,
-				D990ABF521EC596D00D1CC7E /* SemiModal.swift */,
 			);
 			path = PR_semiModall;
 			sourceTree = "<group>";
@@ -129,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D990ABEE21EC572700D1CC7E /* LaunchScreen.storyboard in Resources */,
+				D94ADFD421F43BCE000105C2 /* Modal.storyboard in Resources */,
 				D990ABEB21EC572700D1CC7E /* Assets.xcassets in Resources */,
 				D990ABE621EC572500D1CC7E /* Main.storyboard in Resources */,
 			);
@@ -142,9 +160,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D990ABE321EC572500D1CC7E /* ViewController.swift in Sources */,
-				D990ABF621EC596D00D1CC7E /* SemiModal.swift in Sources */,
 				D990ABE921EC572500D1CC7E /* PR_semiModall.xcdatamodeld in Sources */,
+				D94ADFD221F43ABC000105C2 /* PresentationAnimator.swift in Sources */,
 				D990ABE121EC572500D1CC7E /* AppDelegate.swift in Sources */,
+				D94ADFCE21F437AB000105C2 /* PresentationManager.swift in Sources */,
+				D94ADFD021F439BE000105C2 /* PresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

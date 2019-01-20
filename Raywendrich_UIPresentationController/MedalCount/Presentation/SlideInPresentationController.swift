@@ -49,7 +49,6 @@ class SlideInPresentationController: UIPresentationController {
   }
   
   override func presentationTransitionWillBegin() {
-    print("presentationTransitionWillBegin")
     
     // 1
     containerView?.insertSubview(dimmingView, at: 0)
@@ -75,7 +74,7 @@ class SlideInPresentationController: UIPresentationController {
   
 
   override func dismissalTransitionWillBegin() {
-    print("dismissalTransitionWillBegin")
+
     guard let coordinator = presentedViewController.transitionCoordinator else {
       dimmingView.alpha = 0.0
       return

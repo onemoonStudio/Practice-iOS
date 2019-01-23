@@ -17,6 +17,7 @@
 		D990ABE921EC572500D1CC7E /* PR_semiModall.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D990ABE721EC572500D1CC7E /* PR_semiModall.xcdatamodeld */; };
 		D990ABEB21EC572700D1CC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D990ABEA21EC572700D1CC7E /* Assets.xcassets */; };
 		D990ABEE21EC572700D1CC7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D990ABEC21EC572700D1CC7E /* LaunchScreen.storyboard */; };
+		D9E8458521F6DD7700AA0079 /* CustomModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E8458421F6DD7700AA0079 /* CustomModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D990ABEA21EC572700D1CC7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D990ABED21EC572700D1CC7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D990ABEF21EC572700D1CC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9E8458421F6DD7700AA0079 /* CustomModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				D990ABE021EC572500D1CC7E /* AppDelegate.swift */,
 				D990ABE221EC572500D1CC7E /* ViewController.swift */,
 				D990ABE421EC572500D1CC7E /* Main.storyboard */,
+				D9E8458421F6DD7700AA0079 /* CustomModalViewController.swift */,
 				D94ADFD321F43BCE000105C2 /* Modal.storyboard */,
 				D990ABEA21EC572700D1CC7E /* Assets.xcassets */,
 				D990ABEC21EC572700D1CC7E /* LaunchScreen.storyboard */,
@@ -164,6 +167,7 @@
 				D94ADFD221F43ABC000105C2 /* PresentationAnimator.swift in Sources */,
 				D990ABE121EC572500D1CC7E /* AppDelegate.swift in Sources */,
 				D94ADFCE21F437AB000105C2 /* PresentationManager.swift in Sources */,
+				D9E8458521F6DD7700AA0079 /* CustomModalViewController.swift in Sources */,
 				D94ADFD021F439BE000105C2 /* PresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D38a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Base" representedClassName="Base" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="House" representedClassName="House" isAbstract="YES" syncable="YES"/>
+    <entity name="People" representedClassName="People" parentEntity="House" syncable="YES">
+        <attribute name="job" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="base" maxCount="1" deletionRule="Cascade" destinationEntity="Base" syncable="YES"/>
+    </entity>
+    <entity name="Pet" representedClassName="Pet" parentEntity="House" syncable="YES">
+        <attribute name="adopted" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="base" maxCount="1" deletionRule="Cascade" destinationEntity="Base" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="House" positionX="-176.7109375" positionY="-140.796875" width="128" height="43"/>
+        <element name="Pet" positionX="64.14453125" positionY="-88.35546875" width="128" height="73"/>
+        <element name="People" positionX="60.8515625" positionY="-218.99609375" width="128" height="73"/>
+        <element name="Base" positionX="388.66796875" positionY="-151.6953125" width="128" height="73"/>
+    </elements>
+</model>

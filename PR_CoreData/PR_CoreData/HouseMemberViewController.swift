@@ -10,26 +10,36 @@ import UIKit
 
 class HouseMemberViewController: UIViewController {
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var typeLabel: UILabel!
-    @IBOutlet weak var plusInfoLabel: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var typeTextField: UITextField!
+    @IBOutlet weak var plusInfoTextField: UITextField!
+    @IBOutlet weak var editButton: UIButton!
     
     public var preparedData: AnyObject?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupLabel()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupLabel() {
+        typeTextField.isEnabled = false
+        switch preparedData {
+        case is People:
+            let data = preparedData as! People
+            nameTextField.text = data.base.name
+            typeTextField.text = MemberType(rawValue: data.base.type)!.stringValue
+            plusInfoTextField.text = data.job
+        case is Pet:
+            let data = preparedData as! Pet
+            nameTextField.text = data.base.name
+            typeTextField.text = MemberType(rawValue: data.base.type)!.stringValue
+            plusInfoTextField.text = "adopted? \(data.adopted)"
+            plusInfoTextField.isEnabled = false
+        default:
+            print(preparedData)
+            fatalError("check object type")
+        }
     }
-    */
 
 }

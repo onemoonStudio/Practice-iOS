@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--House View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PR_CoreData" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HouseViewController" customModule="PR_CoreData" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,40 +78,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jb-bK-49A">
-                                <rect key="frame" x="166.5" y="50" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McK-78-981">
+                                <rect key="frame" x="172.5" y="250" width="30" height="30"/>
+                                <state key="normal" title="Edit"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7pT-EC-3hm">
+                                <rect key="frame" x="10" y="50" width="355" height="30"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW3-CC-ihO">
-                                <rect key="frame" x="166.5" y="101" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HEg-rc-yKE">
+                                <rect key="frame" x="10" y="110" width="355" height="30"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNG-39-Idd">
-                                <rect key="frame" x="166.5" y="152" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vNi-l4-qlw">
+                                <rect key="frame" x="10" y="170" width="355" height="30"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="FW3-CC-ihO" firstAttribute="centerX" secondItem="phX-db-cGR" secondAttribute="centerX" id="46r-Az-wQz"/>
-                            <constraint firstItem="FW3-CC-ihO" firstAttribute="top" secondItem="7Jb-bK-49A" secondAttribute="bottom" constant="30" id="K9t-7S-DoX"/>
-                            <constraint firstItem="7Jb-bK-49A" firstAttribute="centerX" secondItem="phX-db-cGR" secondAttribute="centerX" id="SQ5-QL-6ga"/>
-                            <constraint firstItem="PNG-39-Idd" firstAttribute="top" secondItem="FW3-CC-ihO" secondAttribute="bottom" constant="30" id="aPL-W5-15p"/>
-                            <constraint firstItem="7Jb-bK-49A" firstAttribute="top" secondItem="NL9-ts-eXv" secondAttribute="top" constant="30" id="qZf-ua-gRk"/>
-                            <constraint firstItem="PNG-39-Idd" firstAttribute="centerX" secondItem="phX-db-cGR" secondAttribute="centerX" id="yFX-61-YSW"/>
+                            <constraint firstItem="NL9-ts-eXv" firstAttribute="trailing" secondItem="HEg-rc-yKE" secondAttribute="trailing" constant="10" id="2Wd-Nn-Kfp"/>
+                            <constraint firstItem="7pT-EC-3hm" firstAttribute="leading" secondItem="NL9-ts-eXv" secondAttribute="leading" constant="10" id="8YG-M1-jUR"/>
+                            <constraint firstItem="HEg-rc-yKE" firstAttribute="leading" secondItem="NL9-ts-eXv" secondAttribute="leading" constant="10" id="NFs-gX-Yc6"/>
+                            <constraint firstItem="McK-78-981" firstAttribute="centerX" secondItem="phX-db-cGR" secondAttribute="centerX" id="T54-PX-cks"/>
+                            <constraint firstItem="7pT-EC-3hm" firstAttribute="centerX" secondItem="phX-db-cGR" secondAttribute="centerX" id="XLL-Kp-6dK"/>
+                            <constraint firstItem="HEg-rc-yKE" firstAttribute="centerX" secondItem="phX-db-cGR" secondAttribute="centerX" id="aTI-vv-MBr"/>
+                            <constraint firstItem="NL9-ts-eXv" firstAttribute="trailing" secondItem="7pT-EC-3hm" secondAttribute="trailing" constant="10" id="c7p-e8-PlG"/>
+                            <constraint firstItem="vNi-l4-qlw" firstAttribute="leading" secondItem="NL9-ts-eXv" secondAttribute="leading" constant="10" id="dS4-sO-8Lh"/>
+                            <constraint firstItem="NL9-ts-eXv" firstAttribute="trailing" secondItem="vNi-l4-qlw" secondAttribute="trailing" constant="10" id="gv5-vd-ep8"/>
+                            <constraint firstItem="7pT-EC-3hm" firstAttribute="top" secondItem="NL9-ts-eXv" secondAttribute="top" constant="30" id="l4h-Fd-nfj"/>
+                            <constraint firstItem="vNi-l4-qlw" firstAttribute="top" secondItem="HEg-rc-yKE" secondAttribute="bottom" constant="30" id="lkO-0J-cgX"/>
+                            <constraint firstItem="HEg-rc-yKE" firstAttribute="top" secondItem="7pT-EC-3hm" secondAttribute="bottom" constant="30" id="lmr-am-vsa"/>
+                            <constraint firstItem="vNi-l4-qlw" firstAttribute="centerX" secondItem="phX-db-cGR" secondAttribute="centerX" id="noo-cq-UbF"/>
+                            <constraint firstItem="McK-78-981" firstAttribute="top" secondItem="vNi-l4-qlw" secondAttribute="bottom" constant="50" id="s4a-ut-qY3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NL9-ts-eXv"/>
                     </view>
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="nameLabel" destination="7Jb-bK-49A" id="pAP-Ml-2me"/>
-                        <outlet property="plusInfoLabel" destination="PNG-39-Idd" id="v20-K2-ziO"/>
-                        <outlet property="typeLabel" destination="FW3-CC-ihO" id="bVc-bN-8qY"/>
+                        <outlet property="editButton" destination="McK-78-981" id="VoS-V5-mxu"/>
+                        <outlet property="nameTextField" destination="7pT-EC-3hm" id="0Ia-9O-cfv"/>
+                        <outlet property="plusInfoTextField" destination="vNi-l4-qlw" id="ni5-2R-Pvd"/>
+                        <outlet property="typeTextField" destination="HEg-rc-yKE" id="PSD-ta-3PA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YQp-Ez-kGa" userLabel="First Responder" sceneMemberID="firstResponder"/>

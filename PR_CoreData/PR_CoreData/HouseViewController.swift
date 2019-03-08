@@ -56,6 +56,12 @@ class HouseViewController: UIViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    
     private func addNewMember(_ data: (type: String,name: String,additional: String)) {
         var memberType: MemberType = MemberType(rawValue: Int16(data.type)!)!
         var memberData: HouseMemberData

@@ -35,17 +35,19 @@ class LayoutViewController: UIViewController {
         let left = NSLayoutConstraint(item: newLabel,
                                       attribute: .left,
                                       relatedBy: .equal,
-                                      toItem: view,
+                                      toItem: view.safeAreaLayoutGuide,
                                       attribute: .right,
                                       multiplier: 1,
                                       constant: 0)
         let right = NSLayoutConstraint(item: newLabel,
                                       attribute: .right,
                                       relatedBy: .equal,
-                                      toItem: view,
+                                      toItem: view.safeAreaLayoutGuide,
                                       attribute: .left,
                                       multiplier: 1,
                                       constant: 0)
+        
+        NSLayoutConstraint.activate([topConst,left,right])
         
         newLabel.addConstraints([topConst, left, right])
         print("hello world")

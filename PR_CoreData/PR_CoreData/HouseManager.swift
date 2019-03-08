@@ -52,6 +52,32 @@ public final class HouseManager {
         }
     }
     
+    static func edit(nsManagedObject: NSManagedObject, data: HouseMemberData) -> Void {
+        switch data {
+        case is PetData:
+            guard
+                let data = data as? PetData,
+                let managedObject = nsManagedObject as? Pet
+                else { return }
+            managedObject.base.name = data.name
+        case is PeopleData:
+            guard
+                let data = data as? PeopleData,
+                let managedObject = nsManagedObject as? People
+                else { return }
+            managedObject.base.name = data.name
+            managedObject.job = data.job
+        default:
+            fatalError("check Type")
+        }
+        do {
+            try managedContext.save()
+            print("edited!")
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
+    
     
     
 }

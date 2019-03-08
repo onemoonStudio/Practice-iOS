@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HouseMemberViewController: UIViewController {
     
@@ -15,31 +16,71 @@ class HouseMemberViewController: UIViewController {
     @IBOutlet weak var plusInfoTextField: UITextField!
     @IBOutlet weak var editButton: UIButton!
     
-    public var preparedData: AnyObject?
+    public var preparedData: NSManagedObject?
+    private lazy var memberType: MemberType = {
+        switch preparedData {
+        case is People:
+            return .people
+        case is Pet:
+            return .pet
+        default:
+            fatalError("check memberType")
+        }
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLabel()
+        setupEditButton()
     }
     
     private func setupLabel() {
         typeTextField.isEnabled = false
-        switch preparedData {
-        case is People:
+        switch memberType {
+        case .people:
             let data = preparedData as! People
             nameTextField.text = data.base.name
-            typeTextField.text = MemberType(rawValue: data.base.type)!.stringValue
+            typeTextField.text = memberType.stringValue
             plusInfoTextField.text = data.job
-        case is Pet:
+        case .pet:
             let data = preparedData as! Pet
             nameTextField.text = data.base.name
-            typeTextField.text = MemberType(rawValue: data.base.type)!.stringValue
+            typeTextField.text = memberType.stringValue
             plusInfoTextField.text = "adopted? \(data.adopted)"
             plusInfoTextField.isEnabled = false
-        default:
-            print(preparedData)
-            fatalError("check object type")
         }
     }
-
+    
+    private func setupEditButton() {
+        editButton.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapEditButton(_ sender: UIButton) {
+        var data: HouseMemberData? = {
+            switch self.memberType {
+            case .people:
+                let data = preparedData as! People
+                guard
+                    let name = nameTextField.text ,
+                    let job = plusInfoTextField.text
+                    else { return nil }
+                if name != data.base.name || job != data.job {
+                    return PeopleData(name: name, job: job)
+                }
+            case .pet:
+                guard let name = nameTextField.text else { return nil }
+                let data = preparedData as! Pet
+                if name != data.base.name {
+                    return PetData(name: name, adopted: data.adopted)
+                }
+            }
+            return nil
+        }()
+        guard
+            let nsManagedObject = preparedData,
+            let editedData = data
+            else { return }
+        HouseManager.edit(nsManagedObject: nsManagedObject, data: editedData)
+    }
+    
 }

@@ -38,11 +38,13 @@ public final class HouseManager {
             let newPet = Pet(entity: targetDescription, insertInto: managedContext)
             newPet.adopted = data.adopted
             newPet.base = baseEntity
+            baseEntity.pet = newPet
         case .people:
             guard let data = data as? PeopleData else { return }
             let newPeople = People(entity: targetDescription, insertInto: managedContext)
             newPeople.job = data.job
             newPeople.base = baseEntity
+            baseEntity.people = newPeople
         }
         do {
             try managedContext.save()
@@ -78,6 +80,56 @@ public final class HouseManager {
         }
     }
     
+    static func filter(_ targetMemberType: MemberType?) -> [NSManagedObject] {
+        guard let targetMemberType = targetMemberType else {
+            return try! managedContext.fetch(NSFetchRequest(entityName: "House"))
+        }
+        let predicate = NSPredicate(
+            format: "%K == %@",
+            #keyPath(Base.type),
+            NSNumber(value: targetMemberType.rawValue)
+        )
+        let filterRequest = NSFetchRequest<NSManagedObject>(entityName: "Base")
+        filterRequest.predicate = predicate
+        
+        do {
+            let baseList = try managedContext.fetch(filterRequest)
+            var result: [NSManagedObject]
+            switch targetMemberType {
+            case .people:
+                result = baseList.map({ (object) -> People in
+                    object.value(forKey: "people") as! People
+                })
+            case .pet:
+                result = baseList.map({ (object) -> Pet in
+                    object.value(forKey: "pet") as! Pet
+                })
+            }
+            return result
+        } catch {
+            print(error.localizedDescription)
+        }
+        return []
+    }
     
+    static func deleteObject(object: NSManagedObject) {
+        try! managedContext.delete(object)
+        try! managedContext.save()
+        print("deleted!")
+    }
+    
+    static func removeAll() {
+        let requestBase = NSFetchRequest<NSManagedObject>(entityName: "Base")
+        var resultBase = try! managedContext.fetch(requestBase)
+        let requestHouse = NSFetchRequest<NSManagedObject>(entityName: "House")
+        var resultHouse = try! managedContext.fetch(requestHouse)
+        for obj in resultBase {
+            managedContext.delete(obj)
+        }
+        for obj in resultHouse {
+            managedContext.delete(obj)
+        }
+        try! managedContext.save()
+    }
     
 }

@@ -59,9 +59,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="zwy-nx-ZgY">
+                        <barButtonItem key="leftBarButtonItem" title="filter" id="8K1-A7-XmY" userLabel="filter"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kFC-em-JiC"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="filterBarButtonItem" destination="8K1-A7-XmY" id="zY8-mX-GKc"/>
                         <outlet property="plusBarButtonItem" destination="kFC-em-JiC" id="lkX-d8-brf"/>
                         <outlet property="tableView" destination="Szg-YU-ovs" id="vbX-nP-5Kb"/>
                     </connections>

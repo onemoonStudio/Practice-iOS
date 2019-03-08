@@ -13,6 +13,7 @@ class HouseViewController: UIViewController {
     
     @IBOutlet weak var plusBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filterBarButtonItem: UIBarButtonItem!
     
     private let cellIdentifier = "Cell"
     lazy var list: [NSManagedObject] = {
@@ -42,25 +43,68 @@ class HouseViewController: UIViewController {
                 )
                 else { return }
             self.addNewMember(tempData)
+            for field in fields {
+                field.text = nil
+            }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { _ in
+            guard let fields = addNewMemberAlertController.textFields else { return }
+            for field in fields {
+                field.text = nil
+            }
+        }
         addNewMemberAlertController.addAction(cancelAction)
         addNewMemberAlertController.addAction(addAction)
         return addNewMemberAlertController
     }()
     
+    private lazy var filterAlert: UIAlertController = {
+        let filterAlert = UIAlertController(title: "Choice Member Filter", message: nil, preferredStyle: .actionSheet)
+        let filterAllAction = UIAlertAction(title: "All", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.list = HouseManager.filter(nil)
+            self.tableView.reloadData()
+        }
+        let filterPeopleAction = UIAlertAction.init(title: "People", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.list = HouseManager.filter(.people)
+            self.tableView.reloadData()
+        }
+        let filterPetAction = UIAlertAction(title: "Pet", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.list = HouseManager.filter(.pet)
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        filterAlert.addAction(filterAllAction)
+        filterAlert.addAction(filterPeopleAction)
+        filterAlert.addAction(filterPetAction)
+        filterAlert.addAction(cancelAction)
+        return filterAlert
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupFilterBarButtonItem()
         setupPlusBarButtonItem()
         setupTableView()
+        title = "My House Member"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        reloadWithFetch()
     }
     
+    private func setupFilterBarButtonItem() {
+        filterBarButtonItem.target = self
+        filterBarButtonItem.action = #selector(connectFilterMemberAlert)
+    }
+    
+    private func setupPlusBarButtonItem() {
+        plusBarButtonItem.target = self
+        plusBarButtonItem.action = #selector(connectAddNewMemberAlert)
+    }
     
     private func addNewMember(_ data: (type: String,name: String,additional: String)) {
         var memberType: MemberType = MemberType(rawValue: Int16(data.type)!)!
@@ -80,11 +124,7 @@ class HouseViewController: UIViewController {
             )
         }
         HouseManager.insert(memberType: memberType , data: memberData)
-    }
-    
-    private func setupPlusBarButtonItem() {
-        plusBarButtonItem.target = self
-        plusBarButtonItem.action = #selector(plusMember)
+        reloadWithFetch()
     }
     
     private func setupTableView() {
@@ -92,28 +132,23 @@ class HouseViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func fetch() -> [NSManagedObject] {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let context = appDelegate?.persistentContainer.viewContext
+    private func fetch() -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "House")
-        guard let result = try! context?.fetch(fetchRequest) else {
-            return []
-        }
-        return result
+        return try! HouseManager.managedContext.fetch(fetchRequest)
     }
     
-    @objc func plusMember() -> Void {
-        present(newMemberAlert, animated: true, completion: nil)
+    @objc func connectFilterMemberAlert() -> Void {
+        present(filterAlert, animated: true)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let memberController =
-//            segue.destination as? HouseMemberViewController,
-//        let cell = sender as? UITableViewCell,
-//        let indexPath = tableView.indexPath(for: cell)
-//            else { return }
-//        memberController.preparedData = list[indexPath.row]
-//    }
+    @objc func connectAddNewMemberAlert() -> Void {
+        present(newMemberAlert, animated: true)
+    }
+    
+    private func reloadWithFetch() {
+        list = fetch()
+        tableView.reloadData()
+    }
 }
 
 extension HouseViewController: UITableViewDataSource {
@@ -155,7 +190,17 @@ extension HouseViewController: UITableViewDelegate {
                 as? HouseMemberViewController else { return }
         memberViewController.preparedData = list[indexPath.row]
         show(memberViewController, sender: nil)
-//        tableView.deselectRow(at: indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            HouseManager.deleteObject(object: list[indexPath.row])
+        }
+        reloadWithFetch()
     }
 }
 

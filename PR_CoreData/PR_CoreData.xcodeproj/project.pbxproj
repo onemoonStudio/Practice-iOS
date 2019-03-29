@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D935E15E2238DF09000D7B65 /* Base+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935E1582238DF09000D7B65 /* Base+CoreDataClass.swift */; };
+		D935E15F2238DF09000D7B65 /* Base+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935E1592238DF09000D7B65 /* Base+CoreDataProperties.swift */; };
+		D935E1602238DF09000D7B65 /* People+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935E15A2238DF09000D7B65 /* People+CoreDataClass.swift */; };
+		D935E1612238DF09000D7B65 /* People+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935E15B2238DF09000D7B65 /* People+CoreDataProperties.swift */; };
+		D935E1622238DF09000D7B65 /* Pet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935E15C2238DF09000D7B65 /* Pet+CoreDataClass.swift */; };
+		D935E1632238DF09000D7B65 /* Pet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D935E15D2238DF09000D7B65 /* Pet+CoreDataProperties.swift */; };
 		D9B8AA0D2230ED6B00A29233 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA0C2230ED6B00A29233 /* AppDelegate.swift */; };
 		D9B8AA0F2230ED6B00A29233 /* HouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA0E2230ED6B00A29233 /* HouseViewController.swift */; };
 		D9B8AA122230ED6B00A29233 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B8AA102230ED6B00A29233 /* Main.storyboard */; };
@@ -14,20 +20,18 @@
 		D9B8AA172230ED6D00A29233 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B8AA162230ED6D00A29233 /* Assets.xcassets */; };
 		D9B8AA1A2230ED6D00A29233 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9B8AA182230ED6D00A29233 /* LaunchScreen.storyboard */; };
 		D9B8AA322230F42D00A29233 /* Enum+memberType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA312230F42D00A29233 /* Enum+memberType.swift */; };
-		D9B8AA3B2230F9AE00A29233 /* House+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA332230F9AE00A29233 /* House+CoreDataClass.swift */; };
-		D9B8AA3C2230F9AE00A29233 /* House+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA342230F9AE00A29233 /* House+CoreDataProperties.swift */; };
-		D9B8AA3D2230F9AE00A29233 /* People+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA352230F9AE00A29233 /* People+CoreDataClass.swift */; };
-		D9B8AA3E2230F9AE00A29233 /* People+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA362230F9AE00A29233 /* People+CoreDataProperties.swift */; };
-		D9B8AA3F2230F9AE00A29233 /* Pet+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA372230F9AE00A29233 /* Pet+CoreDataClass.swift */; };
-		D9B8AA402230F9AE00A29233 /* Pet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA382230F9AE00A29233 /* Pet+CoreDataProperties.swift */; };
-		D9B8AA412230F9AE00A29233 /* Base+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA392230F9AE00A29233 /* Base+CoreDataClass.swift */; };
-		D9B8AA422230F9AE00A29233 /* Base+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA3A2230F9AE00A29233 /* Base+CoreDataProperties.swift */; };
 		D9B8AA442230FD0D00A29233 /* HouseMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA432230FD0D00A29233 /* HouseMemberViewController.swift */; };
 		D9B8AA46223117C800A29233 /* HouseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA45223117C800A29233 /* HouseManager.swift */; };
 		D9B8AA48223118F400A29233 /* MemberProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8AA47223118F400A29233 /* MemberProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D935E1582238DF09000D7B65 /* Base+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Base+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D935E1592238DF09000D7B65 /* Base+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Base+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D935E15A2238DF09000D7B65 /* People+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "People+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D935E15B2238DF09000D7B65 /* People+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "People+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D935E15C2238DF09000D7B65 /* Pet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pet+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D935E15D2238DF09000D7B65 /* Pet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D9B8AA092230ED6B00A29233 /* PR_CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PR_CoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B8AA0C2230ED6B00A29233 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9B8AA0E2230ED6B00A29233 /* HouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseViewController.swift; sourceTree = "<group>"; };
@@ -37,14 +41,6 @@
 		D9B8AA192230ED6D00A29233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9B8AA1B2230ED6D00A29233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9B8AA312230F42D00A29233 /* Enum+memberType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+memberType.swift"; sourceTree = "<group>"; };
-		D9B8AA332230F9AE00A29233 /* House+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "House+CoreDataClass.swift"; path = "PR_CoreData/House+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D9B8AA342230F9AE00A29233 /* House+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "House+CoreDataProperties.swift"; path = "PR_CoreData/House+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		D9B8AA352230F9AE00A29233 /* People+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "People+CoreDataClass.swift"; path = "PR_CoreData/People+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D9B8AA362230F9AE00A29233 /* People+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "People+CoreDataProperties.swift"; path = "PR_CoreData/People+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		D9B8AA372230F9AE00A29233 /* Pet+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Pet+CoreDataClass.swift"; path = "PR_CoreData/Pet+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D9B8AA382230F9AE00A29233 /* Pet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Pet+CoreDataProperties.swift"; path = "PR_CoreData/Pet+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		D9B8AA392230F9AE00A29233 /* Base+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Base+CoreDataClass.swift"; path = "PR_CoreData/Base+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D9B8AA3A2230F9AE00A29233 /* Base+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Base+CoreDataProperties.swift"; path = "PR_CoreData/Base+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D9B8AA432230FD0D00A29233 /* HouseMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseMemberViewController.swift; sourceTree = "<group>"; };
 		D9B8AA45223117C800A29233 /* HouseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseManager.swift; sourceTree = "<group>"; };
 		D9B8AA47223118F400A29233 /* MemberProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberProtocols.swift; sourceTree = "<group>"; };
@@ -61,17 +57,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D935E1642238DF0F000D7B65 /* CoreDataSubClass */ = {
+			isa = PBXGroup;
+			children = (
+				D935E1582238DF09000D7B65 /* Base+CoreDataClass.swift */,
+				D935E1592238DF09000D7B65 /* Base+CoreDataProperties.swift */,
+				D935E15A2238DF09000D7B65 /* People+CoreDataClass.swift */,
+				D935E15B2238DF09000D7B65 /* People+CoreDataProperties.swift */,
+				D935E15C2238DF09000D7B65 /* Pet+CoreDataClass.swift */,
+				D935E15D2238DF09000D7B65 /* Pet+CoreDataProperties.swift */,
+			);
+			path = CoreDataSubClass;
+			sourceTree = "<group>";
+		};
 		D9B8AA002230ED6B00A29233 = {
 			isa = PBXGroup;
 			children = (
-				D9B8AA332230F9AE00A29233 /* House+CoreDataClass.swift */,
-				D9B8AA342230F9AE00A29233 /* House+CoreDataProperties.swift */,
-				D9B8AA352230F9AE00A29233 /* People+CoreDataClass.swift */,
-				D9B8AA362230F9AE00A29233 /* People+CoreDataProperties.swift */,
-				D9B8AA372230F9AE00A29233 /* Pet+CoreDataClass.swift */,
-				D9B8AA382230F9AE00A29233 /* Pet+CoreDataProperties.swift */,
-				D9B8AA392230F9AE00A29233 /* Base+CoreDataClass.swift */,
-				D9B8AA3A2230F9AE00A29233 /* Base+CoreDataProperties.swift */,
 				D9B8AA0B2230ED6B00A29233 /* PR_CoreData */,
 				D9B8AA0A2230ED6B00A29233 /* Products */,
 			);
@@ -88,6 +89,7 @@
 		D9B8AA0B2230ED6B00A29233 /* PR_CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D935E1642238DF0F000D7B65 /* CoreDataSubClass */,
 				D9B8AA0C2230ED6B00A29233 /* AppDelegate.swift */,
 				D9B8AA47223118F400A29233 /* MemberProtocols.swift */,
 				D9B8AA45223117C800A29233 /* HouseManager.swift */,
@@ -176,19 +178,17 @@
 			files = (
 				D9B8AA0F2230ED6B00A29233 /* HouseViewController.swift in Sources */,
 				D9B8AA322230F42D00A29233 /* Enum+memberType.swift in Sources */,
-				D9B8AA3E2230F9AE00A29233 /* People+CoreDataProperties.swift in Sources */,
-				D9B8AA3C2230F9AE00A29233 /* House+CoreDataProperties.swift in Sources */,
-				D9B8AA3D2230F9AE00A29233 /* People+CoreDataClass.swift in Sources */,
-				D9B8AA3B2230F9AE00A29233 /* House+CoreDataClass.swift in Sources */,
+				D935E1632238DF09000D7B65 /* Pet+CoreDataProperties.swift in Sources */,
+				D935E1602238DF09000D7B65 /* People+CoreDataClass.swift in Sources */,
+				D935E15E2238DF09000D7B65 /* Base+CoreDataClass.swift in Sources */,
 				D9B8AA0D2230ED6B00A29233 /* AppDelegate.swift in Sources */,
 				D9B8AA442230FD0D00A29233 /* HouseMemberViewController.swift in Sources */,
 				D9B8AA48223118F400A29233 /* MemberProtocols.swift in Sources */,
-				D9B8AA412230F9AE00A29233 /* Base+CoreDataClass.swift in Sources */,
-				D9B8AA402230F9AE00A29233 /* Pet+CoreDataProperties.swift in Sources */,
 				D9B8AA152230ED6B00A29233 /* PR_CoreData.xcdatamodeld in Sources */,
-				D9B8AA422230F9AE00A29233 /* Base+CoreDataProperties.swift in Sources */,
+				D935E15F2238DF09000D7B65 /* Base+CoreDataProperties.swift in Sources */,
+				D935E1612238DF09000D7B65 /* People+CoreDataProperties.swift in Sources */,
 				D9B8AA46223117C800A29233 /* HouseManager.swift in Sources */,
-				D9B8AA3F2230F9AE00A29233 /* Pet+CoreDataClass.swift in Sources */,
+				D935E1622238DF09000D7B65 /* Pet+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

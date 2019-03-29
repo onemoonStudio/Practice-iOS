@@ -47,6 +47,7 @@ public final class HouseManager {
             baseEntity.people = newPeople
         }
         do {
+            baseEntity.regDate = NSDate()
             try managedContext.save()
             print("saved!")
         } catch let err {
@@ -55,20 +56,16 @@ public final class HouseManager {
     }
     
     static func edit(nsManagedObject: NSManagedObject, data: HouseMemberData) -> Void {
+        guard let managedObject = nsManagedObject as? Base else { return }
         switch data {
         case is PetData:
-            guard
-                let data = data as? PetData,
-                let managedObject = nsManagedObject as? Pet
-                else { return }
-            managedObject.base.name = data.name
+            managedObject.name = data.name
         case is PeopleData:
-            guard
-                let data = data as? PeopleData,
-                let managedObject = nsManagedObject as? People
-                else { return }
-            managedObject.base.name = data.name
-            managedObject.job = data.job
+            managedObject.name = data.name
+            if let peopleData = managedObject.people,
+                let newdata = data as? PeopleData {
+                peopleData.job = newdata.job
+            }
         default:
             fatalError("check Type")
         }
@@ -80,37 +77,25 @@ public final class HouseManager {
         }
     }
     
-    static func filter(_ targetMemberType: MemberType?) -> [NSManagedObject] {
-        guard let targetMemberType = targetMemberType else {
-            return try! managedContext.fetch(NSFetchRequest(entityName: "House"))
-        }
-        let predicate = NSPredicate(
-            format: "%K == %@",
-            #keyPath(Base.type),
-            NSNumber(value: targetMemberType.rawValue)
-        )
-        let filterRequest = NSFetchRequest<NSManagedObject>(entityName: "Base")
-        filterRequest.predicate = predicate
-        
-        do {
-            let baseList = try managedContext.fetch(filterRequest)
-            var result: [NSManagedObject]
-            switch targetMemberType {
-            case .people:
-                result = baseList.map({ (object) -> People in
-                    object.value(forKey: "people") as! People
-                })
-            case .pet:
-                result = baseList.map({ (object) -> Pet in
-                    object.value(forKey: "pet") as! Pet
-                })
-            }
-            return result
-        } catch {
-            print(error.localizedDescription)
-        }
-        return []
-    }
+//    static func filter(_ targetMemberType: MemberType?) -> [NSManagedObject] {
+//        guard let targetMemberType = targetMemberType else {
+//            return try! managedContext.fetch(NSFetchRequest(entityName: "Base"))
+//        }
+//        let predicate = NSPredicate(
+//            format: "%K == %@",
+//            #keyPath(Base.type),
+//            NSNumber(value: targetMemberType.rawValue)
+//        )
+//        let filterRequest = NSFetchRequest<NSManagedObject>(entityName: "Base")
+//        filterRequest.predicate = predicate
+//        do {
+//            let result = try managedContext.fetch(filterRequest)
+//            return result
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//        return []
+//    }
     
     static func deleteObject(object: NSManagedObject) {
         try! managedContext.delete(object)
@@ -118,15 +103,20 @@ public final class HouseManager {
         print("deleted!")
     }
     
-    static func removeAll() {
+    static func deleteAll() {
         let requestBase = NSFetchRequest<NSManagedObject>(entityName: "Base")
         var resultBase = try! managedContext.fetch(requestBase)
-        let requestHouse = NSFetchRequest<NSManagedObject>(entityName: "House")
-        var resultHouse = try! managedContext.fetch(requestHouse)
+        let requestPeople = NSFetchRequest<NSManagedObject>(entityName: "People")
+        var resultPeople = try! managedContext.fetch(requestPeople)
+        let requestPet = NSFetchRequest<NSManagedObject>(entityName: "Pet")
+        var resultPet = try! managedContext.fetch(requestPet)
         for obj in resultBase {
             managedContext.delete(obj)
         }
-        for obj in resultHouse {
+        for obj in resultPeople {
+            managedContext.delete(obj)
+        }
+        for obj in resultPet {
             managedContext.delete(obj)
         }
         try! managedContext.save()

@@ -16,10 +16,30 @@ class HouseViewController: UIViewController {
     @IBOutlet weak var filterBarButtonItem: UIBarButtonItem!
     
     private let cellIdentifier = "Cell"
-    lazy var list: [NSManagedObject] = {
-        fetch()
+    private var sortMemberType: MemberType?
+    private var predicate: NSPredicate? {
+        if let sortMemberType = sortMemberType {
+            return NSPredicate(
+                format: "%K == %@",
+                #keyPath(Base.type),
+                NSNumber(value: sortMemberType.rawValue)
+            )
+        } else {
+            return nil
+        }
+    }
+    private lazy var resultController: NSFetchedResultsController<Base> = {
+        let fetchRequest = NSFetchRequest<Base>(entityName: "Base")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "regDate", ascending: false)]
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: HouseManager.managedContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
     }()
-    lazy var newMemberAlert: UIAlertController = {
+    private lazy var newMemberAlert: UIAlertController = {
         let addNewMemberAlertController =
             UIAlertController.init(title: "New Member", message: "wow", preferredStyle: .alert)
         
@@ -57,23 +77,22 @@ class HouseViewController: UIViewController {
         addNewMemberAlertController.addAction(addAction)
         return addNewMemberAlertController
     }()
-    
     private lazy var filterAlert: UIAlertController = {
         let filterAlert = UIAlertController(title: "Choice Member Filter", message: nil, preferredStyle: .actionSheet)
         let filterAllAction = UIAlertAction(title: "All", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.list = HouseManager.filter(nil)
-            self.tableView.reloadData()
+            self.sortMemberType = nil
+            self.updateList()
         }
         let filterPeopleAction = UIAlertAction.init(title: "People", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.list = HouseManager.filter(.people)
-            self.tableView.reloadData()
+            self.sortMemberType = MemberType(rawValue: 0)!
+            self.updateList()
         }
         let filterPetAction = UIAlertAction(title: "Pet", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.list = HouseManager.filter(.pet)
-            self.tableView.reloadData()
+            self.sortMemberType = MemberType(rawValue: 1)!
+            self.updateList()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         filterAlert.addAction(filterAllAction)
@@ -88,12 +107,19 @@ class HouseViewController: UIViewController {
         setupFilterBarButtonItem()
         setupPlusBarButtonItem()
         setupTableView()
+        updateList()
         title = "My House Member"
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        reloadWithFetch()
+    private func updateList() {
+        do {
+            resultController.fetchRequest.predicate = predicate
+            try resultController.performFetch()
+            tableView.reloadData()
+        } catch let error as NSError {
+            print("\(error.code) code & \(error.localizedDescription)")
+        }
+        
     }
     
     private func setupFilterBarButtonItem() {
@@ -111,30 +137,24 @@ class HouseViewController: UIViewController {
         var memberData: HouseMemberData
         switch memberType {
         case .people:
-            memberType = MemberType(rawValue: 1)!
+            memberType = MemberType(rawValue: 0)!
             memberData = PeopleData(
                 name: data.name,
                 job: data.additional
             )
         case .pet:
-            memberType = MemberType(rawValue: 2)!
+            memberType = MemberType(rawValue: 1)!
             memberData = PetData(
                 name: data.name,
                 adopted: data.additional.lowercased() == "t" ? true : false
             )
         }
         HouseManager.insert(memberType: memberType , data: memberData)
-        reloadWithFetch()
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    private func fetch() -> [NSManagedObject] {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "House")
-        return try! HouseManager.managedContext.fetch(fetchRequest)
     }
     
     @objc func connectFilterMemberAlert() -> Void {
@@ -145,39 +165,21 @@ class HouseViewController: UIViewController {
         present(newMemberAlert, animated: true)
     }
     
-    private func reloadWithFetch() {
-        list = fetch()
-        tableView.reloadData()
-    }
 }
 
 extension HouseViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        guard let sectionInfo = resultController.sections?[0] else { return 0 }
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
             let cell =
                 tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-            let info = list[indexPath.row]
-            var basicInfo: (title: String, detail: String)
-            switch info {
-            case is People:
-                let data = info as! People
-                basicInfo.title = data.base.name
-                basicInfo.detail = MemberType(rawValue: data.base.type)!.stringValue
-            case is Pet:
-                let data = info as! Pet
-                basicInfo.title = data.base.name
-                basicInfo.detail = MemberType(rawValue: data.base.type)!.stringValue
-            default:
-                basicInfo.title = "!"
-                basicInfo.detail = "Check Type"
-            }
-            cell.textLabel?.text = basicInfo.0
-            cell.detailTextLabel?.text = basicInfo.1
-            
+            let info = resultController.object(at: indexPath)
+            cell.textLabel?.text = info.name
+            cell.detailTextLabel?.text = info.memberType.stringValue
             return cell
     }
 }
@@ -188,7 +190,7 @@ extension HouseViewController: UITableViewDelegate {
         guard let memberViewController =
             mainStoryBoard.instantiateViewController(withIdentifier: "HouseMemberViewController")
                 as? HouseMemberViewController else { return }
-        memberViewController.preparedData = list[indexPath.row]
+        memberViewController.preparedData = resultController.object(at: indexPath)
         show(memberViewController, sender: nil)
         tableView.deselectRow(at: indexPath, animated: false)
     }
@@ -198,9 +200,47 @@ extension HouseViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            HouseManager.deleteObject(object: list[indexPath.row])
+            HouseManager.deleteObject(object: resultController.object(at: indexPath))
         }
-        reloadWithFetch()
     }
+}
+
+extension HouseViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller:
+        NSFetchedResultsController<NSFetchRequestResult>) {
+        print("start")
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller:
+        NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .update:
+            let cell = tableView.cellForRow(at: indexPath!)
+            let info = resultController.object(at: indexPath!)
+            cell?.textLabel?.text = info.name
+            cell?.detailTextLabel?.text = info.memberType.stringValue
+        case .move:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller:
+        NSFetchedResultsController<NSFetchRequestResult>) {
+        print("end")
+        tableView.endUpdates()
+        
+    }
+        
 }
 

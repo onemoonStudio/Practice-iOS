@@ -8,7 +8,7 @@
 
 
 enum MemberType: Int16 {
-    case people = 1
+    case people = 0
     case pet
     
     var stringValue: String {

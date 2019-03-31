@@ -22,7 +22,10 @@ class ViewController: UIViewController {
     
     var webData: Data?
     
+    @IBOutlet weak var ka: UILabel!
+    
     override func viewDidLoad() {
+        ka.textColor = .red
         
         super.viewDidLoad()
 //        let urlString = "https://naver.com/"
@@ -77,6 +80,8 @@ class ViewController: UIViewController {
     }
     
     func saveData(data: Data){
+        
+        
         guard let entity =
             NSEntityDescription.entity(forEntityName: "HtmlData", in: managedContext) else {
                 return

@@ -18,15 +18,10 @@ class ViewController: UIViewController {
             return
         }
         
-        hudView.centerLabel.text = "TEST"
+        hudView.centerLabel.text = "View2"
         let hudViewPosition: CGRect = CGRect(x: view.center.x - 50, y: view.center.y - 50, width: 100, height: 100)
         hudView.frame = hudViewPosition
         view.addSubview(hudView)
-    }
-
-    @objc func removeNib() {
-        print("remove Nib")
-        
     }
 }
 

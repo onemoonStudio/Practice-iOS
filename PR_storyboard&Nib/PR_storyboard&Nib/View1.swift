@@ -10,10 +10,10 @@ import UIKit
 
 class View1: UIView {
     
-    override func awakeFromNib() {
-        print("View1 awake From nib")
-    }
-
+    @IBOutlet weak var centerLabel: UILabel!
+    
+    private let xibName: String = "View1"
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         print("View1 init one")
@@ -21,7 +21,7 @@ class View1: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        if let nibView = Bundle.main.loadNibNamed("View1", owner: self, options: nil)?.first as? UIView {
+        if let nibView = Bundle.main.loadNibNamed(xibName, owner: self, options: nil)?.first as? UIView {
             self.addSubview(nibView)
             nibView.frame = bounds
             
@@ -36,6 +36,11 @@ class View1: UIView {
             translatesAutoresizingMaskIntoConstraints = false
         }
         print("View1 init two")
+    }
+    
+    override func awakeFromNib() {
+        print("View1 awake From nib")
+        centerLabel.text = "View1"
     }
     
     // Only override draw() if you perform custom drawing.

@@ -10,18 +10,12 @@ import UIKit
 
 class View2: UIView {
 
-    @IBOutlet weak var centerLabel: UILabel! {
-        didSet {
-            self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeNib)))
-        }
-    }
-    
-    private let xibName = "View2"
-    
-    override func awakeFromNib() {
-        print("View2 awake From nib")
-    }
-    
+    @IBOutlet weak var centerLabel: UILabel!
+//        {
+//            didSet {
+//                self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeNib)))
+//            }
+//        }
     override init(frame: CGRect) {
         super.init(frame: frame)
         print("View2 Init one")
@@ -30,6 +24,11 @@ class View2: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         print("View2 Init two")
+    }
+    
+    override func awakeFromNib() {
+        print("View2 awake From nib")
+        centerLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeNib)))
     }
     
     @objc func removeNib() {

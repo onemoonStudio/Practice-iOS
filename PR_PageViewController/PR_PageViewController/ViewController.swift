@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIPageViewController {
     
-    private let viewcontrollersIdentifier: [String] = ["RedVC" ,"BlueVC"]
+    private let viewcontrollersIdentifier: [String] = ["RedVC" ,"GreenVC" ,"BlueVC"]
     private lazy var pageviewcontrollers: [UIViewController] = {
         return self.viewcontrollersIdentifier.map { UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: $0) }
     }()
@@ -26,24 +26,22 @@ class ViewController: UIPageViewController {
         guard let firstVC = pageviewcontrollers.first  else { return }
         self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
     }
-    
-    
-
-
 }
 
 extension ViewController: UIPageViewControllerDataSource {
+    // 이전에 보여줄 ViewController를 설정한다.
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = pageviewcontrollers.firstIndex(of: viewController) else { return nil }
         let previousIndex = vcIndex - 1
-        guard previousIndex >= 0, pageviewcontrollers.count > previousIndex else { return nil }
+        guard previousIndex >= 0 else { return pageviewcontrollers.last }
         return pageviewcontrollers[previousIndex]
     }
     
+    // 이후에 보여줄 ViewController를 설정한다.
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = pageviewcontrollers.firstIndex(of: viewController) else { return nil }
         let nextIndex = vcIndex + 1
-        guard pageviewcontrollers.count != nextIndex, pageviewcontrollers.count > nextIndex else { return nil }
+        guard pageviewcontrollers.count > nextIndex else { return pageviewcontrollers.first }
         return pageviewcontrollers[nextIndex]
     }
     

@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="lXZ-2N-xpU">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="JrT-wQ-SvN" customClass="ViewController" customModule="PR_PageViewController" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="JrT-wQ-SvN" customClass="ViewController" customModule="PR_PageViewController" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y5p-r6-hhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1013" y="-253"/>

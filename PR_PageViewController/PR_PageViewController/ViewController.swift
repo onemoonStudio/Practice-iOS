@@ -23,9 +23,7 @@ class ViewController: UIPageViewController {
     }
     
     private func setPageViewController() {
-        guard let firstVC = pageviewcontrollers.first  else {
-            return
-        }
+        guard let firstVC = pageviewcontrollers.first  else { return }
         self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
     }
     
@@ -36,11 +34,17 @@ class ViewController: UIPageViewController {
 
 extension ViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return nil
+        guard let vcIndex = pageviewcontrollers.firstIndex(of: viewController) else { return nil }
+        let previousIndex = vcIndex - 1
+        guard previousIndex >= 0, pageviewcontrollers.count > previousIndex else { return nil }
+        return pageviewcontrollers[previousIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return nil
+        guard let vcIndex = pageviewcontrollers.firstIndex(of: viewController) else { return nil }
+        let nextIndex = vcIndex + 1
+        guard pageviewcontrollers.count != nextIndex, pageviewcontrollers.count > nextIndex else { return nil }
+        return pageviewcontrollers[nextIndex]
     }
     
     

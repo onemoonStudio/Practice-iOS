@@ -14,14 +14,23 @@ class ViewController: UIPageViewController {
     private lazy var pageviewcontrollers: [UIViewController] = {
         return self.viewcontrollersIdentifier.map { UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: $0) }
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.dataSource = self
+        dataSource = self
+        delegate = self
+        setupPageControl()
         setPageViewController()
     }
     
+    private func setupPageControl() {
+        // 이게 어떻게 연결되는거지?
+        let appearance = UIPageControl.appearance()
+        appearance.pageIndicatorTintColor = UIColor.white
+        appearance.currentPageIndicatorTintColor = UIColor.red
+        appearance.backgroundColor = UIColor.blue
+    }
+
     private func setPageViewController() {
         guard let firstVC = pageviewcontrollers.first  else { return }
         self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
@@ -45,7 +54,19 @@ extension ViewController: UIPageViewControllerDataSource {
         return pageviewcontrollers[nextIndex]
     }
     
-    
+    // 놀라운점 아래 두개만 추가해도 자동으로 보인다. !?
+    // page indicator 에 표현될 인디케이터 수
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+//        print(pageviewcontrollers.count)
+        return pageviewcontrollers.count
+    }
+
+    // page indicator 의 현재 위치
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        guard let presentedViewController = presentedViewController,
+            let vcIndex: Int = pageviewcontrollers.firstIndex(of: presentedViewController) else { return 0 }
+        return vcIndex
+    }
 }
 
 extension ViewController: UIPageViewControllerDelegate {

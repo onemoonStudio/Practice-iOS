@@ -20,6 +20,11 @@ class ViewController: UIPageViewController {
         super.viewDidLoad()
         dataSource = self
         delegate = self
+        for view in self.view.subviews {
+            if let scrollView = view as? UIScrollView {
+                scrollView.delegate = self
+            }
+        }
         setupPageControl()
         setPageViewController()
     }
@@ -51,7 +56,8 @@ extension ViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = pageviewcontrollers.firstIndex(of: viewController) else { return nil }
         let previousIndex = vcIndex - 1
-        guard previousIndex >= 0 else { return pageviewcontrollers.last }
+//        guard previousIndex >= 0 else { return pageviewcontrollers.last }
+        guard previousIndex >= 0 else { return nil }
         return pageviewcontrollers[previousIndex]
     }
     
@@ -59,44 +65,25 @@ extension ViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let vcIndex = pageviewcontrollers.firstIndex(of: viewController) else { return nil }
         let nextIndex = vcIndex + 1
-        guard pageviewcontrollers.count > nextIndex else { return pageviewcontrollers.first }
+//        guard pageviewcontrollers.count > nextIndex else { return pageviewcontrollers.first }
+        guard pageviewcontrollers.count > nextIndex else { return nil }
         return pageviewcontrollers[nextIndex]
     }
-    
-    // 놀라운점 아래 두개만 추가해도 자동으로 보인다. !?
-    // page indicator 에 표현될 인디케이터 수
-//    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-////        print(pageviewcontrollers.count)
-//        return pageviewcontrollers.count
-//    }
-//
-//    // page indicator 의 현재 위치
-//    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-//        guard let presentedViewController = presentedViewController,
-//            let vcIndex: Int = pageviewcontrollers.firstIndex(of: presentedViewController) else { return 0 }
-//        return vcIndex
-//    }
 }
 
 extension ViewController: UIPageViewControllerDelegate {
-    // 넘어가지 않더라도 호출된다.
-//    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-//        guard let vcIndex: Int = pageviewcontrollers.firstIndex(of: pendingViewControllers[0]) else { return }
-//        print("willTransition \(vcIndex)")
-//    }
-    
     // 넘어가는 것이 끝나면 호출
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
-        for pre in previousViewControllers {
-            // 이전 viewcontroller
-            print(pre.restorationIdentifier)
-        }
+//        for pre in previousViewControllers {
+//            // 이전 viewcontroller
+//            print(pre.restorationIdentifier)
+//        }
         
-        for item in pageViewController.viewControllers! {
-            // 나타난 viewcontroller
-            print(item.restorationIdentifier)
-        }
+//        for item in pageViewController.viewControllers! {
+//            // 나타난 viewcontroller
+//            print(item.restorationIdentifier)
+//        }
         
         guard let nowViewController = pageViewController.viewControllers?.first,
             let index: Int = pageviewcontrollers.firstIndex(of: nowViewController) else { return }
@@ -105,3 +92,22 @@ extension ViewController: UIPageViewControllerDelegate {
     }
 }
 
+
+extension ViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if pageControl.currentPage == 0 && scrollView.contentOffset.x < scrollView.bounds.size.width {
+            scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
+        } else if pageControl.currentPage == pageviewcontrollers.count - 1 && scrollView.contentOffset.x > scrollView.bounds.size.width {
+            scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if pageControl.currentPage == 0 && scrollView.contentOffset.x < scrollView.bounds.size.width {
+            scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
+        } else if pageControl.currentPage == pageviewcontrollers.count - 1 && scrollView.contentOffset.x > scrollView.bounds.size.width {
+            scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
+        }
+    }
+}

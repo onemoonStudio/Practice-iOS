@@ -21,7 +21,7 @@
         <!--View Controller-->
         <scene sceneID="3Ks-h9-hZb">
             <objects>
-                <viewController storyboardIdentifier="RedVC" id="Xb5-c0-SgZ" sceneMemberID="viewController">
+                <viewController restorationIdentifier="RedVC" storyboardIdentifier="RedVC" id="Xb5-c0-SgZ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uU1-SR-AQB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,7 +36,7 @@
         <!--View Controller-->
         <scene sceneID="7gp-vS-coM">
             <objects>
-                <viewController storyboardIdentifier="BlueVC" id="9lw-fg-baR" sceneMemberID="viewController">
+                <viewController restorationIdentifier="BlueVC" storyboardIdentifier="BlueVC" id="9lw-fg-baR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f9z-gP-mBp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,7 +51,7 @@
         <!--View Controller-->
         <scene sceneID="sbv-Go-dHn">
             <objects>
-                <viewController storyboardIdentifier="GreenVC" id="oUN-lB-beV" sceneMemberID="viewController">
+                <viewController restorationIdentifier="GreenVC" storyboardIdentifier="GreenVC" id="oUN-lB-beV" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="GreenVC" id="i9c-4s-3cV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

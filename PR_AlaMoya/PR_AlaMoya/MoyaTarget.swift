@@ -14,6 +14,7 @@ public enum TestTarget {
     case getPath
     case postRaw(rawData: Data)
     case postData(data: Data)
+    case multi(data: [MultipartFormData])
 }
 
 
@@ -26,7 +27,7 @@ extension TestTarget: TargetType {
         switch self {
         case .getData, .getPath:
             return "/get"
-        case .postRaw, .postData:
+        case .postRaw, .postData, .multi:
             return "/post"
         }
     }
@@ -35,7 +36,7 @@ extension TestTarget: TargetType {
         switch self {
         case .getData, .getPath:
             return .get
-        case .postRaw, .postData:
+        case .postRaw, .postData, .multi:
             return .post
         }
     }
@@ -56,6 +57,8 @@ extension TestTarget: TargetType {
             return .requestData(data)
         case .postData(let data):
             return .requestData(data)
+        case .multi(let data):
+            return .uploadMultipart(data)
         }
     }
     

@@ -9,6 +9,7 @@
 import XCTest
 @testable import PR_AlaMoya
 import Moya
+import Alamofire
 
 class PR_AlaMoyaTests: XCTestCase {
 
@@ -44,8 +45,13 @@ class PR_AlaMoyaTests: XCTestCase {
             print(expectation2.description)
             switch result {
             case .success(let value):
-                let json = try! JSONSerialization.jsonObject(with: value.data, options: []) as! [String: Any]
-                print(json)
+                print("@@@@")
+                print(try! value.mapString())
+                print("@@@@")
+                print(try! value.mapJSON())
+                print("@@@@")
+//                let json = try! JSONSerialization.jsonObject(with: value.data, options: []) as! [String: Any]
+//                print(json)
             case .failure(let error):
                 print("error \(error.response)")
             }
@@ -78,6 +84,64 @@ class PR_AlaMoyaTests: XCTestCase {
         }
         
         wait(for: [exp2], timeout: 2)
+    }
+//
+//    func testMultipart() {
+//        print("multipart TEST")
+//        let ex = XCTestExpectation(description: "multi")
+//        var formData: [MultipartFormData] = []
+//
+//        formData.append(MultipartFormData(provider: .data("bar1".data(using: .utf8)!), name: "foo1"))
+//        formData.append(MultipartFormData(provider: .data("bar2".data(using: .utf8)!), name: "foo2"))
+//
+//        provider.request(.multi(data: formData)) { result in
+//            print("got response")
+//            switch result {
+//            case .success(let val):
+//                print("success")
+//                print(val.data)
+//                print(try! val.mapJSON())
+//
+//            case .failure(let error):
+//                print("fail")
+//                print(error.errorCode)
+//                print(error.errorDescription)
+//
+//            }
+//
+//            ex.fulfill()
+//        }
+//        wait(for: [ex], timeout: 3)
+//
+//    }
+    
+    func testAlamof() {
+        let ex = XCTestExpectation(description: "alamofire")
+        print("START")
+        Alamofire.upload(multipartFormData: { multipart in
+            multipart.append("bar1".data(using: .utf8)!, withName: "foo1")
+            multipart.append("bar2".data(using: .utf8)!, withName: "foo2")
+        }, to: "https://postman-echo.com/post") { response in
+            print("GOT RESPONSE")
+            switch response {
+            case .success(let req, _, _):
+                print("SUCCESS")
+                req.responseJSON(completionHandler: { dataResponse in
+                    
+                    print("SECONDE SUCCESS")
+                    print(dataResponse.data)
+                    print(dataResponse.response?.statusCode)
+                    ex.fulfill()
+                })
+            case .failure(let error):
+                print("FAIL")
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        wait(for: [ex], timeout: 3)
+        
     }
 
 //    func testExample() {
